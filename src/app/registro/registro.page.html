@@ -1,9 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>registro</ion-title>
+    <ion-title>Registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-item>
+    <ion-label>Nombres: </ion-label>
+    <ion-input placeholder="" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Apellidos: </ion-label>
+    <ion-input placeholder="" type="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Nro Documento: </ion-label>
+    <ion-input placeholder="" inputmode="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Nro Celular: </ion-label>
+    <ion-input placeholder="" inputmode="number"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Correo: </ion-label>
+    <ion-input placeholder="" type="email" inputmode="email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Dirección: </ion-label>
+    <ion-input placeholder="" type="text"></ion-input>
+  </ion-item>
+  <ion-item > 
+    <ion-label position="stacked">Fecha de nacimiento: </ion-label>
+    <ion-input class="fecha" placeholder="" type="date"></ion-input>
+  </ion-item>
+  <div class="centrado">
+      <ion-button type="submit" class="botonRegistro" color="secondary" shape="round">Registrar</ion-button>
+    </div>
 </ion-content>
