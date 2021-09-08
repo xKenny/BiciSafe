@@ -1,0 +1,23 @@
+ion-toolbar {
+    display: flex;
+    text-align: center;
+}
+ion-content{
+    --background:url('../../assets/Imagenes/fondo2.jpg') 0 0/100% 100% no-repeat;
+}
+ion-item {
+    color: aqua;
+    opacity: 0.8;
+  }
+  .fecha {
+      display: flex;
+      justify-content: flex-end;
+      color: aqua;
+  }
+  .centrado{
+      text-align: center;
+  }
+  .botonRegistro {
+    font-size: large;
+    text-align: center;
+  }
