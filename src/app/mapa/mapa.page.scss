@@ -1,0 +1,17 @@
+ion-content {
+    #map {
+      width: 100%;
+      height: 70%;
+      opacity: 0;
+      transition: opacity 150ms ease-in;
+      display: block;
+      &.show-map{
+        opacity: 1;
+      }
+    } 
+    #icono {
+    display: flex;
+    font-size: 60px;
+    justify-content: space-between;
+  }
+  }

@@ -1,4 +1,35 @@
 <ion-app>
-    <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title>@Usuario</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item [routerLink]="['/mis-bicicletas']">
+          <ion-icon name="bicycle-outline"></ion-icon>
+          Mis Bicicletas
+        </ion-item>
+        <ion-item [routerLink]="['/mapa']">
+          <ion-icon name="earth-outline"></ion-icon>
+          Mapa
+        </ion-item>
+        <ion-item [routerLink]="['/perfil']">
+          <ion-icon name="person-outline"></ion-icon>
+          Perfil
+        </ion-item>
+        <ion-item [routerLink]="['/notificaciones']">
+          <ion-icon name="notifications-outline"></ion-icon>
+          Notificaciones
+        </ion-item>
+        <ion-item [routerLink]="['/contactanos']">
+          <ion-icon name="call-outline"></ion-icon>
+          Contactanos
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+    <ion-router-outlet id="main"></ion-router-outlet>
   </ion-app>
   
