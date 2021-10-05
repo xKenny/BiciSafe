@@ -4,17 +4,17 @@
       <img class="logo" src="../../assets/Imagenes/logo.png">
     <ion-item>
       <ion-label inputmode="email" type="email" position="floating">Correo</ion-label>
-      <ion-input placeholder=""></ion-input>
+      <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Contraseña</ion-label>
-      <ion-input placeholder="" type="password"></ion-input>
+      <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
     </ion-item>
     <ion-item>
       <ion-checkbox color="secondary" slot="start"></ion-checkbox>
       <ion-label>Recordar Datos</ion-label>
     </ion-item>
-    <ion-button type="submit" class="botonInicio" color="secondary" shape="round" [routerLink]="['/mapa']">Ingresar</ion-button>
+    <ion-button type="submit" class="botonInicio" color="secondary" shape="round" (click)="onSubmitLogin()">Ingresar</ion-button>
     <div>
       <u><ion-router-link href="#" class="underline">Olvide mi correo</ion-router-link></u>
     </div>

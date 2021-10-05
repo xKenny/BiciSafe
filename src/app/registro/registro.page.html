@@ -6,34 +6,42 @@
 
 <ion-content>
   <ion-item>
-    <ion-label>Nombres: </ion-label>
+    <ion-label position="floating">Nombres: </ion-label>
     <ion-input placeholder="" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Apellidos: </ion-label>
+    <ion-label position="floating">Apellidos: </ion-label>
     <ion-input placeholder="" type="text"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Nro Documento: </ion-label>
+    <ion-label position="floating">Nro Documento: </ion-label>
     <ion-input placeholder="" inputmode="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Nro Celular: </ion-label>
-    <ion-input placeholder="" inputmode="number"></ion-input>
+    <ion-label position="floating">Nro Celular: </ion-label>
+    <ion-input inputmode="number"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Correo: </ion-label>
-    <ion-input placeholder="" type="email" inputmode="email"></ion-input>
+    <ion-label position="floating">Correo: </ion-label>
+    <ion-input type="email" inputmode="email" [(ngModel)]="email" name="email"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-label>Dirección: </ion-label>
-    <ion-input placeholder="" type="text"></ion-input>
+    <ion-label position="floating">Contraseña</ion-label>
+    <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Confirmar Contraseña</ion-label>
+    <ion-input type="password"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Dirección: </ion-label>
+    <ion-input type="text"></ion-input>
   </ion-item>
   <ion-item > 
     <ion-label position="stacked">Fecha de nacimiento: </ion-label>
     <ion-input class="fecha" placeholder="" type="date"></ion-input>
   </ion-item>
   <div class="centrado">
-      <ion-button type="submit" class="botonRegistro" color="secondary" shape="round">Registrar</ion-button>
+      <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="onSubmitRegistro()">Registrar</ion-button>
     </div>
 </ion-content>
