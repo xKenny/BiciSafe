@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon slot="end" size="large" (click)="salir()" name="log-out-outline"></ion-icon>
+      <ion-buttons slot="start">
+          <ion-menu-button autoHide="false"></ion-menu-button>
+      </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="ion-text-center"
+>
+  <h3>Registro de Bicicleta</h3>
+</div>
+<ion-item>
+  <ion-label position="floating">Marca: </ion-label>
+  <ion-input placeholder="" type="text" [(ngModel)]="newBici.marca" name="marca"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Modelo: </ion-label>
+  <ion-input placeholder="" type="text" [(ngModel)]="newBici.modelo" name="modelo"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Tipo: </ion-label>
+  <ion-input placeholder="" type="text" [(ngModel)]="newBici.tipo" name="tipo"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Nro de Marco: </ion-label>
+  <ion-input placeholder="" type="text" [(ngModel)]="newBici.nroMarco" name="nroMarco"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Color: </ion-label>
+  <ion-input placeholder="" type="text" [(ngModel)]="newBici.color" name="color"></ion-input>
+</ion-item>
+<ion-item>
+  <ion-label position="floating">Valor: </ion-label>
+  <ion-input placeholder="" type="text" [(ngModel)]="newBici.valor" name="valor"></ion-input>
+</ion-item>
+<div class="ion-text-center">
+  <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="imagePicker()">cargarImagen</ion-button>
+</div>
+<div class="ion-text-center">
+  <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="registrar()">Registrar</ion-button>
+</div>
+</ion-content>

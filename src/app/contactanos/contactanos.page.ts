@@ -3,17 +3,16 @@ import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-contactanos',
+  templateUrl: './contactanos.page.html',
+  styleUrls: ['./contactanos.page.scss'],
 })
-export class PerfilPage implements OnInit {
+export class ContactanosPage implements OnInit {
 
   constructor(private menu: MenuController,
     public router: Router) { }
 
   ngOnInit() {
-    this.menu.enable(true);
   }
 
   ionViewDidEnter(){

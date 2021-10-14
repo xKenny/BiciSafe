@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 @Component({
@@ -8,7 +9,8 @@ import { MenuController } from '@ionic/angular';
 })
 export class NotificacionesPage implements OnInit {
 
-  constructor(private menu: MenuController) { }
+  constructor(private menu: MenuController,
+    public router: Router) { }
 
   ngOnInit() {
     this.menu.enable(true);
@@ -17,5 +19,9 @@ export class NotificacionesPage implements OnInit {
   ionViewDidEnter(){
     this.menu.enable(true);
     this.menu.close();
+  }
+
+  salir(){
+    this.router.navigate(['/login']);
   }
 }
