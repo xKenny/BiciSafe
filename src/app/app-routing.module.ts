@@ -30,6 +30,14 @@ const routes: Routes = [
     path: 'perfil',
     loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'registro-bici',
+    loadChildren: () => import('./registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule)
+  },
+  {
+    path: 'contactanos',
+    loadChildren: () => import('./contactanos/contactanos.module').then( m => m.ContactanosPageModule)
+  },
 
 ];
 

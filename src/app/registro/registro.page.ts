@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { AuthService } from '../services/auth.service'
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro',
@@ -10,7 +11,8 @@ import { AuthService } from '../services/auth.service'
 export class RegistroPage implements OnInit {
 
   constructor(private menu: MenuController,
-    private authService : AuthService
+    private authService : AuthService,
+    public router: Router
     ) { }
 
   public email : string;
@@ -25,7 +27,9 @@ export class RegistroPage implements OnInit {
 
   onSubmitRegistro(){
     this.authService.registro(this.email, this.password).then( authService =>{
-      console.log(authService)
-    }).catch(err => console.log(err))
+      console.log(authService);
+      alert('Registro exitoso');
+      this.router.navigate(['/login']);
+    }).catch(err => alert(err))
   }
 }

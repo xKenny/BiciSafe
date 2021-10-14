@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
 
 declare var google;
@@ -12,7 +13,8 @@ export class MapaPage implements OnInit {
 
   map = null;
 
-  constructor(private menu: MenuController) { 
+  constructor(private menu: MenuController,
+    public router: Router) { 
   }
 
   ngOnInit() {
@@ -38,5 +40,9 @@ export class MapaPage implements OnInit {
     google.maps.event.addListenerOnce(this.map, 'idle', () => {
       mapEle.classList.add('show-map');
     });
+  }
+
+  salir(){
+    this.router.navigate(['/login']);
   }
 }
