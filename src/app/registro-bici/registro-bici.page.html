@@ -8,8 +8,7 @@
 </ion-header>
 
 <ion-content>
-<div class="ion-text-center"
->
+<div class="ion-text-center">
   <h3>Registro de Bicicleta</h3>
 </div>
 <ion-item>
@@ -36,10 +35,22 @@
   <ion-label position="floating">Valor: </ion-label>
   <ion-input placeholder="" type="text" [(ngModel)]="newBici.valor" name="valor"></ion-input>
 </ion-item>
+<ion-label>Tomale una foto a tu bicicleta de costado</ion-label>
+  <div class="separar">
+    <ion-button class="boton" type="submit" color="secondary" shape="round" (click)="takePictureCostado()">Tomar Foto</ion-button>
+    <img *ngIf="imageCostado" [src]="imageCostado" alt="imageCostado">
+  </div>
+<ion-label>Tomate una foto junto a tu Bici!</ion-label>
+  <div class="separar">
+    <ion-button class="boton" type="submit" color="secondary" shape="round" (click)="takePictureFrente()">Tomar Foto</ion-button>
+    <img *ngIf="imageFrente" [src]="imageFrente" alt="imageFrente">
+  </div>
+<ion-label>Tomale una foto a tu tarjeta de propiedad</ion-label>
+  <div class="separar">
+    <ion-button class="boton" type="submit" color="secondary" shape="round" (click)="takePictureDoc()">Tomar Foto</ion-button>
+    <img *ngIf="imageDoc" [src]="imageDoc" alt="imageDoc">
+  </div>
 <div class="ion-text-center">
-  <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="imagePicker()">cargarImagen</ion-button>
-</div>
-<div class="ion-text-center">
-  <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="registrar()">Registrar</ion-button>
+  <ion-button type="submit" color="secondary" shape="round" (click)="registrar()">Registrar</ion-button>
 </div>
 </ion-content>
