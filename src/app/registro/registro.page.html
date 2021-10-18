@@ -44,4 +44,8 @@
   <div class="centrado">
       <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="onSubmitRegistro()">Registrar</ion-button>
     </div>
+    <div class="ion-text-center">
+      <ion-button type="submit" color="secondary" shape="round" (click)="takePicture()">Tomar Foto</ion-button>
+      <img *ngIf="image" [src]="image" alt="image">
+    </div>
 </ion-content>

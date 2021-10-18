@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {bici, BicicletasService} from '../services/bicicletas.service'
 import { Router } from '@angular/router';
+import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 
 @Component({
   selector: 'app-registro-bici',
@@ -8,8 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./registro-bici.page.scss'],
 })
 export class RegistroBiciPage implements OnInit {
-  imgRes: any;
-  options: any;
+  imageCostado: string;
+  imageFrente: string;
+  imageDoc: string;
 
   newBici: bici = {
     id :"",
@@ -22,12 +24,66 @@ export class RegistroBiciPage implements OnInit {
     imagen :""
   }
   constructor(public db : BicicletasService,
-    public router: Router
+    public router: Router,
+    private camera : Camera
     ) { }
 
   ngOnInit() {
   }
 
+  takePictureCostado(){
+    const options: CameraOptions = {
+      quality: 100,
+      targetWidth:100,
+      correctOrientation: true,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    };
+    this.camera.getPicture(options)
+    .then((imageData) => {
+      this.imageCostado = 'data:image/jpeg;base64,' + imageData;
+    }, (err) =>{
+      alert(err)
+    })
+  }
+  
+  takePictureFrente(){
+    const options: CameraOptions = {
+      quality: 100,
+      targetWidth:100,
+      correctOrientation: true,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    };
+    this.camera.getPicture(options)
+    .then((imageData) => {
+      this.imageFrente = 'data:image/jpeg;base64,' + imageData;
+    }, (err) =>{
+      alert(err)
+    })
+  }
+  takePictureDoc(){
+    const options: CameraOptions = {
+      quality: 100,
+      targetWidth:100,
+      correctOrientation: true,
+      destinationType: this.camera.DestinationType.DATA_URL,
+      encodingType: this.camera.EncodingType.JPEG,
+      mediaType: this.camera.MediaType.PICTURE,
+      sourceType: this.camera.PictureSourceType.CAMERA
+    };
+    this.camera.getPicture(options)
+    .then((imageData) => {
+      this.imageDoc = 'data:image/jpeg;base64,' + imageData;
+    }, (err) =>{
+      alert(err)
+    })
+  }
+  
   registrar(){
     console.log(this.newBici.marca);
     const data = this.newBici;
