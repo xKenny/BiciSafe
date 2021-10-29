@@ -16,9 +16,19 @@
     </div>
         <ion-card *ngFor="let bici of bicicletas">
             <ion-card-content>
-                <p><ion-label>Marca: {{bici.marca}}</ion-label></p>
-                <p><ion-label>Color: {{bici.color}}</ion-label></p>
-                <p><ion-label>Tipo: {{bici.tipo}}</ion-label></p>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col>
+                            <img [src]="bici.imagenCost">
+                        </ion-col>
+                        <ion-col class="ion-margin-top">
+                            <p><ion-label>Marca: {{bici.marca}}</ion-label></p>
+                            <p><ion-label>Color: {{bici.color}}</ion-label></p>
+                            <p><ion-label>Tipo: {{bici.tipo}}</ion-label></p>
+                            <p><ion-label>Modelo: {{bici.modelo}}</ion-label></p>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
               </ion-card-content>
         </ion-card>
 </ion-content>
