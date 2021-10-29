@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from "@angular/fire/firestore";
-import { map } from "rxjs/operators";
+import { finalize, map } from "rxjs/operators";
+import { AngularFireStorage } from "@angular/fire/storage";
 
 export interface bici {
   id :string;
@@ -10,7 +11,9 @@ export interface bici {
   nroMarco :string;
   tipo :string;
   valor :string;
-  imagen :string;
+  imagenCost :string;
+  imagenFren:string;
+  imagenDoc :string;
 }
 
 @Injectable({
@@ -18,7 +21,8 @@ export interface bici {
 })
 export class BicicletasService {
 
-  constructor(private db : AngularFirestore) { }
+  constructor(private db : AngularFirestore,
+    private storage: AngularFireStorage) { }
 
   getBicicletas(){
     return this.db.collection("bicicletas").snapshotChanges().pipe(map(bicis => {
@@ -37,5 +41,26 @@ export class BicicletasService {
 
   crearId(){
     return this.db.createId();
+  }
+
+  subirImagen(file : any, nombre: string){
+    return new Promise<string>(resolve =>{
+      const filePath= 'fotosBicis' + '/' + nombre;
+      const ref= this.storage.ref(filePath);
+      const task= ref.put(file);
+      task.snapshotChanges().pipe(
+        finalize(() => {
+          ref.getDownloadURL().subscribe(res =>{
+            const downloadURL = res;
+            resolve(downloadURL);
+            return;
+          });
+        })
+      )
+      .subscribe()
+    }).catch(err =>{
+      alert(err);
+      console.log(err);
+    })
   }
 }

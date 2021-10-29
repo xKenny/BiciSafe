@@ -7,23 +7,23 @@
 <ion-content>
   <ion-item>
     <ion-label position="floating">Nombres: </ion-label>
-    <ion-input placeholder="" type="text"></ion-input>
+    <ion-input placeholder="" type="text" [(ngModel)]="newPerfil.Nombres" name="Nombres"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Apellidos: </ion-label>
-    <ion-input placeholder="" type="text"></ion-input>
+    <ion-input placeholder="" type="text" [(ngModel)]="newPerfil.Apellidos" name="Apellidos"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Nro Documento: </ion-label>
-    <ion-input placeholder="" inputmode="number"></ion-input>
+    <ion-input type="text" [(ngModel)]="newPerfil.Documento" name="Documento"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Nro Celular: </ion-label>
-    <ion-input inputmode="number"></ion-input>
+    <ion-input type="text" [(ngModel)]="newPerfil.Celular" name="Celular"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Correo: </ion-label>
-    <ion-input type="email" inputmode="email" [(ngModel)]="email" name="email"></ion-input>
+    <ion-input type="email" inputmode="email" [(ngModel)]="newPerfil.Correo" name="Correo"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="floating">Contraseña</ion-label>
@@ -35,17 +35,18 @@
   </ion-item>
   <ion-item>
     <ion-label position="floating">Dirección: </ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="newPerfil.Direccion" name="Direccion"></ion-input>
   </ion-item>
   <ion-item > 
     <ion-label position="stacked">Fecha de nacimiento: </ion-label>
     <ion-input class="fecha" placeholder="" type="date"></ion-input>
   </ion-item>
-  <div class="centrado">
-      <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="onSubmitRegistro()">Registrar</ion-button>
-    </div>
-    <div class="ion-text-center">
-      <ion-button type="submit" color="secondary" shape="round" (click)="takePicture()">Tomar Foto</ion-button>
+  <div class="separar">
+      <ion-button class="boton" type="submit" color="secondary" shape="round" (click)="takePicture()">Tomar Foto</ion-button>
       <img *ngIf="image" [src]="image" alt="image">
     </div>
+  <div class="centrado">
+      <ion-button type="submit" class="botonRegistro" color="secondary" shape="round" (click)="registrar()">Registrar</ion-button>
+    </div>
+    
 </ion-content>

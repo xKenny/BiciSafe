@@ -9,9 +9,15 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
   styleUrls: ['./registro-bici.page.scss'],
 })
 export class RegistroBiciPage implements OnInit {
-  imageCostado: string;
-  imageFrente: string;
-  imageDoc: string;
+  imageCostado: any;
+  imageFrente: any;
+  imageDoc: any;
+  fileimageCostado: any;
+  fileimageFrente: any;
+  fileimageDoc: any;
+  nombreimageCostado: string;
+  nombreimageFrente: string;
+  nombreimageDoc: string;
 
   newBici: bici = {
     id :"",
@@ -21,7 +27,9 @@ export class RegistroBiciPage implements OnInit {
     nroMarco :"",
     tipo :"",
     valor :"",
-    imagen :""
+    imagenCost :"",
+    imagenFren : "",
+    imagenDoc : ""
   }
   constructor(public db : BicicletasService,
     public router: Router,
@@ -44,6 +52,7 @@ export class RegistroBiciPage implements OnInit {
     this.camera.getPicture(options)
     .then((imageData) => {
       this.imageCostado = 'data:image/jpeg;base64,' + imageData;
+      this.fileimageCostado = this.base64ToImage(this.imageCostado);
     }, (err) =>{
       alert(err)
     })
@@ -62,6 +71,7 @@ export class RegistroBiciPage implements OnInit {
     this.camera.getPicture(options)
     .then((imageData) => {
       this.imageFrente = 'data:image/jpeg;base64,' + imageData;
+      this.fileimageFrente = this.base64ToImage(this.imageFrente);
     }, (err) =>{
       alert(err)
     })
@@ -79,15 +89,37 @@ export class RegistroBiciPage implements OnInit {
     this.camera.getPicture(options)
     .then((imageData) => {
       this.imageDoc = 'data:image/jpeg;base64,' + imageData;
+      this.fileimageDoc = this.base64ToImage(this.imageDoc);
     }, (err) =>{
       alert(err)
     })
   }
-  
-  registrar(){
-    console.log(this.newBici.marca);
+
+  base64ToImage(dataURI) {
+    const fileDate = dataURI.split(',');
+    // const mime = fileDate[0].match(/:(.*?);/)[1];
+    const byteString = atob(fileDate[1]);
+    const arrayBuffer = new ArrayBuffer(byteString.length);
+    const int8Array = new Uint8Array(arrayBuffer);
+    for (let i = 0; i < byteString.length; i++) {
+      int8Array[i] = byteString.charCodeAt(i);
+    }
+    const blob = new Blob([arrayBuffer], { type: 'image/png' });
+    return blob;
+  }
+
+  async registrar(){
     const data = this.newBici;
     data.id = this.db.crearId();
+    this.nombreimageCostado = "Cost" + String(data.id);
+    this.nombreimageFrente = "fren" + String(data.id);
+    this.nombreimageDoc = "doc" + String(data.id);
+    const res1 = await this.db.subirImagen(this.fileimageCostado, this.nombreimageCostado);
+    const res2 = await this.db.subirImagen(this.fileimageFrente, this.nombreimageFrente);
+    const res3 = await this.db.subirImagen(this.fileimageDoc, this.nombreimageDoc);
+    data.imagenCost = (String)(res1);
+    data.imagenFren = (String)(res2);
+    data.imagenDoc = (String)(res3);
     const enlace = 'bicicletas';
     this.db.crearBicicleta<bici>(data,enlace,data.id);
     this.newBici.marca= "";
@@ -99,7 +131,6 @@ export class RegistroBiciPage implements OnInit {
     alert('Registro exitoso!');
     this.router.navigate(['/mis-bicicletas']);
   }
-
   salir(){
     this.router.navigate(['/login']);
   }

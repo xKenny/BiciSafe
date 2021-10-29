@@ -21,3 +21,13 @@ ion-item {
     font-size: large;
     text-align: center;
   }
+  .separar{
+    display:flex;
+    justify-content: space-around;
+    margin-top: 5px;
+}
+.boton{
+    display: flex;
+    margin-top: 40px;
+    width: 160px;
+}
