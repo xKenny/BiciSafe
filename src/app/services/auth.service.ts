@@ -2,14 +2,15 @@ import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth'
 import { AngularFirestore } from "@angular/fire/firestore";
 import { AngularFireStorage } from '@angular/fire/storage'
-import { finalize } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { finalize, map } from 'rxjs/operators';
 
 export interface perfil {
   id :string;
   Nombres :string;
   Apellidos :string;
   Documento :string;
-  Telefono :string;
+  Celular :string;
   Correo :string;
   Direccion :string;
   FechaNac : Date;
@@ -25,13 +26,46 @@ export class AuthService {
     private storage: AngularFireStorage,
     private db : AngularFirestore) { }
 
-  login(email:string, password:string){
+  login(email:string, password:string): Promise<any>{
     
     return new Promise((resolve, rejected) => {
       this.AFauth.auth.signInWithEmailAndPassword(email, password).then(user =>{
         resolve(user)
       }).catch(err => rejected(err));
     });
+  }
+
+  logout(){
+    this.AFauth.auth.signOut();
+  }
+
+  obtenerNombre(email: string){
+    return this.db.collection("perfiles", ref => ref.where("Correo", '==', email)).snapshotChanges().pipe(map(perfiles => {
+      return perfiles.map(a =>{
+        const data = a.payload.doc.data() as perfil;
+        data.id = a.payload.doc.id;
+        return data.Nombres;
+      })
+    }))
+  }
+  obtenerid(email: string){
+    return this.db.collection("perfiles", ref => ref.where("Correo", '==', email)).snapshotChanges().pipe(map(perfiles => {
+      return perfiles.map(a =>{
+        const data = a.payload.doc.data() as perfil;
+        data.id = a.payload.doc.id;
+        return data.id;
+      })
+    }))
+  }
+
+  obtenerDatos(email: string){
+    return this.db.collection("perfiles", ref => ref.where("Correo", '==', email)).snapshotChanges().pipe(map(perfiles => {
+      return perfiles.map(a =>{
+        const data = a.payload.doc.data() as perfil;
+        data.id = a.payload.doc.id;
+        return data;
+      })
+    }))
   }
 
   registro(email:string, password: string){
@@ -42,6 +76,9 @@ export class AuthService {
     });
   }
 
+  obtenerUsuario(){
+    return this.AFauth.auth.currentUser.email;
+  }
   crearUsuario<tipo>(data: tipo, enlace: string, id: string){
     try {
       const ref = this.db.collection("perfiles");

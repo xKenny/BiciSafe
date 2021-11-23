@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {bici, BicicletasService} from '../services/bicicletas.service'
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
+import { AuthService } from "../services/auth.service";
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registro-bici',
@@ -9,6 +11,10 @@ import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
   styleUrls: ['./registro-bici.page.scss'],
 })
 export class RegistroBiciPage implements OnInit {
+
+  public idUser;
+  public nombre : string = "";
+  public email : string;
   imageCostado: any;
   imageFrente: any;
   imageDoc: any;
@@ -21,6 +27,7 @@ export class RegistroBiciPage implements OnInit {
 
   newBici: bici = {
     id :"",
+    idUsuario : "",
     marca :"",
     color :"",
     modelo :"",
@@ -31,14 +38,24 @@ export class RegistroBiciPage implements OnInit {
     imagenFren : "",
     imagenDoc : ""
   }
-  constructor(public db : BicicletasService,
+  constructor(private menu: MenuController,
+    public db : BicicletasService,
     public router: Router,
-    private camera : Camera
+    private camera : Camera,
+    private auth: AuthService
     ) { }
 
   ngOnInit() {
+    this.menu.enable(true);
+    this.email = (this.auth.obtenerUsuario());
+    this.auth.obtenerNombre(this.email).subscribe(response => this.nombre = response[0])
   }
 
+  ionViewDidEnter(){
+    this.menu.enable(true);
+    this.menu.close();
+  }
+  
   takePictureCostado(){
     const options: CameraOptions = {
       quality: 100,
@@ -132,6 +149,7 @@ export class RegistroBiciPage implements OnInit {
     this.router.navigate(['/mis-bicicletas']);
   }
   salir(){
+    this.auth.logout();
     this.router.navigate(['/login']);
   }
 }

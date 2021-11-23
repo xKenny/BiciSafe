@@ -4,6 +4,7 @@
         <ion-buttons slot="start">
             <ion-menu-button autoHide="false"></ion-menu-button>
         </ion-buttons>
+        {{nombre}}
     </ion-toolbar>
 </ion-header>
 <ion-content class="ion-text-center">
@@ -13,7 +14,7 @@
     <div> 
         <h3>Registrar nueva bicicleta</h3>
       <ion-icon name="add-circle-outline" (click)="registrar()"></ion-icon>
-    </div>
+    </div >
         <ion-card *ngFor="let bici of bicicletas">
             <ion-card-content>
                 <ion-grid>

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { BicicletasService, bici } from "../services/bicicletas.service";
 import { Router } from '@angular/router';
+import { AuthService } from "../services/auth.service";
+import { datosUsuario } from '../shared/datosUsuario';
 
 
 @Component({
@@ -12,21 +14,30 @@ import { Router } from '@angular/router';
 export class MisBicicletasPage implements OnInit {
 
   public bicicletas : any = [];
+  public nombre : string = "";
+  public email : string = "";
+  private idUsuario : string = "";
 
   constructor(private menu: MenuController, 
     public biciService : BicicletasService,
-    public router: Router) { }
+    public router: Router,
+    private auth: AuthService,
+    public datoUsuario: datosUsuario) {
+      this.email = this.datoUsuario.Email;
+      this.nombre = this.datoUsuario.Nombre;
+      this.idUsuario = this.datoUsuario.Id;
+     }
 
   ngOnInit() {
     this.menu.enable(true);
-    this.biciService.getBicicletas().subscribe( bicis => {
-      this.bicicletas = bicis;
-    })
-    console.log(this.bicicletas)
   }
+  
   ionViewDidEnter(){
     this.menu.enable(true);
     this.menu.close();
+    this.biciService.getBicicletas(this.idUsuario).subscribe( bicis => {
+      this.bicicletas = bicis;
+    });
   }
 
   registrar(){
@@ -34,6 +45,7 @@ export class MisBicicletasPage implements OnInit {
   }
 
   salir(){
+    this.auth.logout();
     this.router.navigate(['/login']);
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { AuthService, perfil } from "../services/auth.service";
 
 @Component({
   selector: 'app-perfil',
@@ -9,11 +10,32 @@ import { MenuController } from '@ionic/angular';
 })
 export class PerfilPage implements OnInit {
 
+  public nombre : string = "";
+  public email : string;
+
+  perfilInfo : perfil[] = [{
+    id : "",
+    Nombres : "",
+    Apellidos : "",
+    Correo : "",
+    Direccion : "",
+    FechaNac : null,
+    Celular : "",
+    Documento :"",
+    Foto : ""
+  }]
+
   constructor(private menu: MenuController,
-    public router: Router) { }
+    public router: Router,
+    private auth: AuthService) { }
 
   ngOnInit() {
-    this.menu.enable(true);
+    this.email = (this.auth.obtenerUsuario());
+    this.auth.obtenerNombre(this.email).subscribe(response => this.nombre = response[0])
+    this.auth.obtenerDatos(this.email).subscribe(perfil => {
+      this.perfilInfo = perfil;
+      console.log(this.perfilInfo)
+    })
   }
 
   ionViewDidEnter(){
@@ -22,6 +44,7 @@ export class PerfilPage implements OnInit {
   }
 
   salir(){
+    this.auth.logout();
     this.router.navigate(['/login']);
   }
 }
