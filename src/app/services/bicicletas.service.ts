@@ -5,6 +5,7 @@ import { AngularFireStorage } from "@angular/fire/storage";
 
 export interface bici {
   id :string;
+  idUsuario: string;
   marca :string;
   color :string;
   modelo :string;
@@ -24,8 +25,8 @@ export class BicicletasService {
   constructor(private db : AngularFirestore,
     private storage: AngularFireStorage) { }
 
-  getBicicletas(){
-    return this.db.collection("bicicletas").snapshotChanges().pipe(map(bicis => {
+  getBicicletas(idUsuario : string){
+    return this.db.collection("bicicletas", ref => ref.where("idUsuario", '==', idUsuario)).snapshotChanges().pipe(map(bicis => {
       return bicis.map(a =>{
         const data = a.payload.doc.data() as bici;
         data.id = a.payload.doc.id;

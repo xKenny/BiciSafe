@@ -20,7 +20,7 @@ export class RegistroPage implements OnInit {
     Nombres :"",
     Apellidos :"",
     Documento :"",
-    Telefono :"",
+    Celular :"",
     Correo :"",
     Direccion :"",
     FechaNac : null,

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
   {
@@ -14,29 +15,36 @@ const routes: Routes = [
   {
     path: 'registro',
     loadChildren: () => import('./registro/registro.module').then( m => m.RegistroPageModule)
-  },  {
+  },
+  {
     path: 'mapa',
-    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule)
+    loadChildren: () => import('./mapa/mapa.module').then( m => m.MapaPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'mis-bicicletas',
-    loadChildren: () => import('./mis-bicicletas/mis-bicicletas.module').then( m => m.MisBicicletasPageModule)
+    loadChildren: () => import('./mis-bicicletas/mis-bicicletas.module').then( m => m.MisBicicletasPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'notificaciones',
-    loadChildren: () => import('./notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule)
+    loadChildren: () => import('./notificaciones/notificaciones.module').then( m => m.NotificacionesPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'perfil',
-    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule)
+    loadChildren: () => import('./perfil/perfil.module').then( m => m.PerfilPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'registro-bici',
-    loadChildren: () => import('./registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule)
+    loadChildren: () => import('./registro-bici/registro-bici.module').then( m => m.RegistroBiciPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'contactanos',
-    loadChildren: () => import('./contactanos/contactanos.module').then( m => m.ContactanosPageModule)
+    loadChildren: () => import('./contactanos/contactanos.module').then( m => m.ContactanosPageModule),
+    canActivate: [AuthGuard]
   },
 
 ];

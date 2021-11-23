@@ -39,7 +39,7 @@
   </ion-item>
   <ion-item > 
     <ion-label position="stacked">Fecha de nacimiento: </ion-label>
-    <ion-input class="fecha" placeholder="" type="date"></ion-input>
+    <ion-input class="fecha" placeholder="" type="date" name="Fecha" [(ngModel)]="newPerfil.FechaNac"></ion-input>
   </ion-item>
   <div class="separar">
       <ion-button class="boton" type="submit" color="secondary" shape="round" (click)="takePicture()">Tomar Foto</ion-button>

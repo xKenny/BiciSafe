@@ -4,7 +4,26 @@
         <ion-buttons slot="start">
             <ion-menu-button autoHide="false"></ion-menu-button>
         </ion-buttons>
+        {{nombre}}
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <div class="ion-text-center">
+        <img src="{{perfilInfo[0].Foto}}" alt="" width="150">
+    </div>
+    <ion-item>
+        <ion-label>Nombres: {{perfilInfo[0].Nombres}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>Apellidos: {{perfilInfo[0].Apellidos}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>Direccion: {{perfilInfo[0].Direccion}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>Celular: {{perfilInfo[0].Celular}}</ion-label>
+    </ion-item>
+    <ion-item>
+        <ion-label>Nro Documentos: {{perfilInfo[0].Documento}}</ion-label>
+    </ion-item>
 </ion-content>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController } from '@ionic/angular';
+import { AuthService } from "../services/auth.service";
 
 declare var google;
 
@@ -12,13 +13,18 @@ declare var google;
 export class MapaPage implements OnInit {
 
   map = null;
+  public nombre : string = "";
+  public email : string;
 
   constructor(private menu: MenuController,
-    public router: Router) { 
+    public router: Router,
+    private auth: AuthService) { 
   }
 
   ngOnInit() {
     this.loadMap();
+    this.email = (this.auth.obtenerUsuario());
+    this.auth.obtenerNombre(this.email).subscribe(response => this.nombre = response[0])
   }
   
   ionViewDidEnter(){
@@ -43,6 +49,7 @@ export class MapaPage implements OnInit {
   }
 
   salir(){
+    this.auth.logout();
     this.router.navigate(['/login']);
   }
 }
