@@ -32,10 +32,10 @@ export class MisBicicletasPage implements OnInit {
     this.menu.enable(true);
   }
   
-  ionViewDidEnter(){
+  async ionViewDidEnter(){
     this.menu.enable(true);
     this.menu.close();
-    this.biciService.getBicicletas(this.idUsuario).subscribe( bicis => {
+    await this.biciService.getBicicletas(this.idUsuario).subscribe( bicis => {
       this.bicicletas = bicis;
     });
   }
