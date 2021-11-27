@@ -12,6 +12,16 @@ ion-content {
     #icono {
     display: flex;
     font-size: 60px;
+    margin-left: 20px;
+    text-align: center;
     justify-content: space-between;
   }
+  }
+  input{
+    width: 100%;
+    height: 30px;
+  }
+  .letra{
+    font-size: 15px;
+    margin-top: 1px;
   }

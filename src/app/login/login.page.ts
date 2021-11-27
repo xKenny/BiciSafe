@@ -29,15 +29,15 @@ export class LoginPage implements OnInit {
   ionViewDidEnter(){
     this.menu.enable(false);
   }
-  cargarDatos(){
+  async cargarDatos(){
     this.datoUsuario.Email = this.email;
-    this.authService.obtenerNombre(this.email).subscribe(response => this.datoUsuario.Nombre = response[0]);
-    this.authService.obtenerid(this.email).subscribe(response => this.datoUsuario.Id = response[0]);
+    await this.authService.obtenerNombre(this.email).subscribe(response => this.datoUsuario.Nombre = response[0]);
+    await this.authService.obtenerid(this.email).subscribe(response => this.datoUsuario.Id = response[0]);
   }
 
-  onSubmitLogin(){
-    this.authService.login(this.email, this.password).then(res =>{
-      this.cargarDatos()
+  async onSubmitLogin(){
+    await this.cargarDatos()
+    await this.authService.login(this.email, this.password).then(res =>{
       this.router.navigate(['/mapa']);
     }).catch(err => alert('Los datos ingresados son incorrectos'))
   }
