@@ -1,7 +1,7 @@
 <ion-content>
   <div class="botones">
     <h3>BiciSafe</h3>
-      <img class="logo" src="../../assets/Imagenes/logo.png">
+      <img class="logo" (click)="cargarDatos()" src="../../assets/Imagenes/logo.png">
     <ion-item>
       <ion-label inputmode="email" type="email" position="floating">Correo</ion-label>
       <ion-input type="text" [(ngModel)]="email" name="email"></ion-input>
@@ -10,10 +10,10 @@
       <ion-label position="floating">Contraseña</ion-label>
       <ion-input type="password" [(ngModel)]="password" name="password"></ion-input>
     </ion-item>
-    <ion-item>
+    <!--<ion-item>
       <ion-checkbox color="secondary" slot="start"></ion-checkbox>
       <ion-label>Recordar Datos</ion-label>
-    </ion-item>
+    </ion-item>-->
     <ion-button type="submit" class="botonInicio" color="secondary" shape="round" (click)="onSubmitLogin()">Ingresar</ion-button>
     <div>
       <u><ion-router-link href="#" class="underline">Olvide mi correo</ion-router-link></u>

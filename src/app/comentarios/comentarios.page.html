@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-icon name="close-circle" slot="end" size="large" (click)="salirModal()"></ion-icon>
+    <ion-title>Comentarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-card *ngFor="let coment of comentarios">
+    <ion-card-content>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                  <div>
+                    <ion-label>{{coment.Date}}</ion-label>
+                  </div>
+                  <div>
+                    <ion-label class="negrita">{{coment.Usuario}}: </ion-label>
+                  </div>
+                    <p><ion-label>{{coment.mensaje}}</ion-label></p>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+      </ion-card-content>
+      <div id="abajo"></div>
+</ion-card>
+
+</ion-content>
+<ion-footer padding>
+  <ion-item>
+    <ion-textarea [(ngModel)]="comentario.mensaje" maxlength="300" placeholder="Escribe un comentario..."></ion-textarea>
+    <ion-button class="margin" color="success" (click)="enviarComentario()">
+      <ion-icon name="send"></ion-icon>
+    </ion-button>
+  </ion-item>
+</ion-footer>

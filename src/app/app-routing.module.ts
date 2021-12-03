@@ -45,7 +45,15 @@ const routes: Routes = [
     path: 'contactanos',
     loadChildren: () => import('./contactanos/contactanos.module').then( m => m.ContactanosPageModule),
     canActivate: [AuthGuard]
+  },  {
+    path: 'politica',
+    loadChildren: () => import('./politica/politica.module').then( m => m.PoliticaPageModule)
   },
+  {
+    path: 'comentarios',
+    loadChildren: () => import('./comentarios/comentarios.module').then( m => m.ComentariosPageModule)
+  },
+
 
 ];
 

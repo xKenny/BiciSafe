@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
 import { AuthService } from "../services/auth.service";
 import { MenuController } from '@ionic/angular';
+import {NgForm} from '@angular/forms';
 
 @Component({
   selector: 'app-registro-bici',
@@ -49,6 +50,7 @@ export class RegistroBiciPage implements OnInit {
     this.menu.enable(true);
     this.email = (this.auth.obtenerUsuario());
     this.auth.obtenerNombre(this.email).subscribe(response => this.nombre = response[0])
+    this.auth.obtenerid(this.email).subscribe(response => this.newBici.idUsuario = response[0]);
   }
 
   ionViewDidEnter(){

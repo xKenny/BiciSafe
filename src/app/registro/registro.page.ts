@@ -3,6 +3,8 @@ import { MenuController } from '@ionic/angular';
 import { AuthService, perfil } from '../services/auth.service'
 import { Router } from '@angular/router';
 import { Camera, CameraOptions } from "@ionic-native/camera/ngx";
+import { ModalController } from '@ionic/angular';
+import { PoliticaPage } from "../politica/politica.page";
 
 @Component({
   selector: 'app-registro',
@@ -15,6 +17,7 @@ export class RegistroPage implements OnInit {
   nombreImage: string;
   public email : string;
   public password : string;
+  checked = false;
   newPerfil: perfil = {
     id :"",
     Nombres :"",
@@ -30,7 +33,8 @@ export class RegistroPage implements OnInit {
   constructor(private menu: MenuController,
     private authService : AuthService,
     public router: Router,
-    private camera : Camera
+    private camera : Camera,
+    public modalController: ModalController
     ) { }
 
   ngOnInit() {
@@ -59,6 +63,7 @@ export class RegistroPage implements OnInit {
     })
   }
 
+
   base64ToImage(dataURI) {
     const fileDate = dataURI.split(',');
     // const mime = fileDate[0].match(/:(.*?);/)[1];
@@ -85,18 +90,34 @@ export class RegistroPage implements OnInit {
     }).catch(err => alert(err))
   }
 
+  cambiarCheck(){
+    this.checked = !this.checked;
+  }
+
   async onSubmitRegistro(){
+    if(!this.checked){
+      alert('Debes aceptar la política de tratamiento de datos')
+      return null
+    }
+    
     const data = this.newPerfil;
     
     data.id = this.authService.crearId();
     
     const enlace = 'perfiles';
     this.authService.crearUsuario(data,enlace,data.id).then(auth =>{
-      console.log("me registre!")
     }).catch(err => alert(err))
     this.authService.registro(data.Correo, this.password).then( authService =>{
       alert('Registro exitoso');
       this.router.navigate(['/login']);
     }).catch(err => alert(err))
+  }
+
+  async abrirModal(){
+    const modal = await this.modalController.create({
+      component: PoliticaPage
+    });
+
+    return await modal.present();
   }
 }

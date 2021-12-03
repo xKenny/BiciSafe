@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController } from '@ionic/angular';
+import { MenuController, ModalController } from '@ionic/angular';
 import { AuthService } from "../services/auth.service";
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-
+import { ComentariosPage } from '../comentarios/comentarios.page';
 
 
 interface MarkerType{
@@ -23,7 +23,7 @@ export class MapaPage implements OnInit {
 
   map: any;
   public nombre : string = "";
-  public email : string;
+  public email : string = "";
   lati;
   long;
   locat;
@@ -35,7 +35,8 @@ export class MapaPage implements OnInit {
   constructor(private menu: MenuController,
     public router: Router,
     private auth: AuthService,
-    private geolocation: Geolocation
+    private geolocation: Geolocation,
+    public modalController : ModalController
     ) { 
   }
 
@@ -136,6 +137,14 @@ export class MapaPage implements OnInit {
         alert('No se puede trazar la ruta debido a: ' + status);
       }
     });
+  }
+
+  async verComentarios(){
+    const modal = await this.modalController.create({
+      component: ComentariosPage
+    });
+
+    return await modal.present();
   }
 
   salir(){

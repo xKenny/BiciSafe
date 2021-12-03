@@ -39,7 +39,12 @@ export class MisBicicletasPage implements OnInit {
       this.bicicletas = bicis;
     });
   }
-
+  
+  recargar(){
+    this.biciService.getBicicletas(this.idUsuario).subscribe( bicis => {
+      this.bicicletas = bicis;
+    });
+  }
   registrar(){
     this.router.navigate(['/registro-bici']);
   }
